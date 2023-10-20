@@ -1,7 +1,8 @@
-import java.awt.*;
-import java.awt.Graphics;
+package task1;
 
-public class Cherry {
+import java.awt.*;
+
+public class Cherry implements Drawable {
     private int x;
     private int y;
 
@@ -10,12 +11,11 @@ public class Cherry {
         this.y = y;
     }
 
-    void draw(Graphics g) {
-        // Рисуем круглую вишенку
+    @Override
+    public void draw(Graphics2D g) {
         g.setColor(Color.RED);
         g.fillOval(x, y, 70, 70);
 
-        // Рисуем черешеньку сверху
         g.setColor(Color.GREEN);
         g.fillArc(x + 5, y - 10, 60, 60, 0, 180);
     }

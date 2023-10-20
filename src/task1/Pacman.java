@@ -1,6 +1,8 @@
+package task1;
+
 import java.awt.*;
 
-public class Pacman {
+public class Pacman implements Drawable {
 
     private int x;
     private int y;
@@ -30,11 +32,12 @@ public class Pacman {
         this.flipped = toFlip;
     }
 
-    public void draw(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+    @Override
+    public void draw(Graphics2D g) {
+        Graphics2D g2d = g;
 
         int eyeX; int eyeY;
-        // Рисуем голову Пакмана
+
         g2d.setColor(bodyColor);
         if (flipped) {
             g2d.fillArc(x, y, diameter, diameter, -mouthAngle - 90, 360 - (2 * mouthAngle));
@@ -45,7 +48,7 @@ public class Pacman {
             eyeX = x + diameter / 3;
             eyeY = y + diameter / 5;
         }
-        // Рисуем глаз Пакмана
+
         int eyeDiameter = diameter / 5;
         g2d.setColor(Color.black);
         g2d.fillOval(eyeX, eyeY, eyeDiameter, eyeDiameter);
