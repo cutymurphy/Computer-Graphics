@@ -1,0 +1,955 @@
+Index: src/MainWindow.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/MainWindow.java b/src/task1/MainWindow.java
+rename from src/MainWindow.java
+rename to src/task1/MainWindow.java
+--- a/src/MainWindow.java	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ b/src/task1/MainWindow.java	(date 1697825707231)
+@@ -1,14 +1,12 @@
++package task1;
++
+ import javax.swing.*;
+ import java.awt.*;
+ 
+ public class MainWindow extends JFrame {
+     private final DrawPanel panel;
+-    private final int width;
+-    private final int height;
+ 
+     public MainWindow(int width, int height) throws HeadlessException {
+-        this.width = width;
+-        this.height = height;
+         panel = new DrawPanel(width, height, 100);
+         this.add(panel);
+     }
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/task1/Main.java
+rename from src/Main.java
+rename to src/task1/Main.java
+--- a/src/Main.java	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ b/src/task1/Main.java	(date 1697824476076)
+@@ -1,3 +1,5 @@
++package task1;
++
+ import javax.swing.*;
+ 
+ public class Main {
+Index: src/DrawPanel.java
+===================================================================
+diff --git a/src/DrawPanel.java b/src/DrawPanel.java
+deleted file mode 100644
+--- a/src/DrawPanel.java	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ /dev/null	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
+@@ -1,115 +0,0 @@
+-import javax.swing.*;
+-import java.awt.*;
+-import java.awt.event.ActionEvent;
+-import java.awt.event.ActionListener;
+-import java.util.ArrayList;
+-
+-public class DrawPanel extends JPanel implements ActionListener {
+-
+-    private int PANEL_WIDTH;
+-    private int PANEL_HEIGHT;
+-    private int TIMER_DELAY;
+-    private Timer timer;
+-    private ArrayList<Pacman> pacmans = new ArrayList<>();
+-    private ArrayList<Cherry> cherries = new ArrayList<>();
+-
+-
+-    public DrawPanel(int width, int height, int timerDelay) {
+-        this.PANEL_WIDTH = width;
+-        this.PANEL_HEIGHT = height;
+-        this.TIMER_DELAY = timerDelay;
+-
+-        this.pacmans.add(new Pacman(0, height / 3, 200, 45, Color.GREEN, false));
+-        this.pacmans.add(new Pacman(300, height - 300, 200, 45, Color.PINK, false));
+-        this.pacmans.add(new Pacman(width - 200, 0, 200, 45, Color.CYAN, true));
+-
+-        this.cherries.add(new Cherry(width / 2 + 450, height / 2 - 100));
+-        this.cherries.add(new Cherry((width / 10) * 3, height / 5 - 100));
+-        this.cherries.add(new Cherry(width - 200, height / 5 - 100));
+-        this.cherries.add(new Cherry((width / 7) * 5, height - 200));
+-        this.cherries.add(new Cherry(width / 5 + 100, height - 200));
+-
+-        timer = new Timer(timerDelay, this);
+-        timer.start();
+-    }
+-
+-    @Override
+-    public void paint(final Graphics gr) {
+-        gr.setColor(Color.BLACK);
+-        gr.fillRect(0, 0, getWidth(), getHeight());
+-
+-        drawBlueRectangles(gr, -10, (getHeight() / 5) * 3 + 10, getWidth() / 5, getWidth() / 5);
+-
+-        drawBlueRectangles(gr, -10, -10, getWidth() / 5, getHeight() / 5);
+-
+-        drawBlueLines(gr, 0, getHeight() / 3, getWidth() / 3, getHeight() / 3);
+-        drawBlueLines(gr, getWidth() / 3, getHeight() / 3, getWidth() / 3, (getHeight() / 3) * 2);
+-
+-        drawBlueRectangles(gr, getWidth() / 3, getHeight() - 200, getWidth() / 5, getHeight() - 200);
+-
+-        drawBlueLines(gr, getWidth() / 3 + 200, 0, getWidth() / 3 + 200, (getHeight() / 3) * 2);
+-
+-        drawBlueRectangles(gr, getWidth() / 2, getHeight() / 4, getWidth() / 5, getWidth() / 5);
+-
+-        drawBlueLines(gr, getWidth() / 2, 5, (getWidth() / 5) * 4, 5);
+-        drawBlueLines(gr, (getWidth() / 5) * 4, 5, (getWidth() / 5) * 4, (getHeight() / 3) * 2);
+-
+-        drawBlueRectangles(gr, (getWidth() / 10) * 9, getHeight() / 4, getWidth() / 5, (getWidth() / 3) * 2);
+-
+-        drawBlueLines(gr, (getWidth() / 3) * 2, getHeight() - 5, ((getWidth() / 10) * 17) / 2, getHeight() - 5);
+-        drawBlueLines(gr, (getWidth() / 3) * 2, getHeight() - 5, (getWidth() / 3) * 2, getHeight() - 200);
+-
+-
+-        for (Cherry cherry: cherries) {
+-            cherry.draw(gr);
+-        }
+-
+-        for (Pacman pacman: pacmans) {
+-            if (!pacman.isFlipped()) {
+-                pacman.setX(pacman.getX());
+-            } else {
+-                pacman.setX(pacman.getX());
+-            }
+-            pacman.draw(gr);
+-        }
+-
+-        Font font = new Font("Georgia", Font.BOLD, 200);
+-        gr.setColor(Color.ORANGE);
+-        gr.setFont(font);
+-        String message = "Pacman";
+-        FontMetrics metrics = gr.getFontMetrics(font);
+-        int x = (getWidth() - metrics.stringWidth(message)) / 2;
+-        int y = getHeight() / 2;
+-        gr.drawString(message, x, y);
+-    }
+-
+-
+-    private void drawBlueRectangles(Graphics gr, int x, int y, int width, int height) {
+-        Graphics2D g2d = (Graphics2D) gr;
+-        g2d.setStroke(new BasicStroke(7));
+-        g2d.setColor(Color.BLUE);
+-        gr.drawRect(x, y, width, height);
+-    }
+-
+-    private void drawBlueLines(Graphics gr, int x1, int y1, int x2, int y2) {
+-        Graphics2D g2d = (Graphics2D) gr;
+-        g2d.setStroke(new BasicStroke(7));
+-        g2d.setColor(Color.BLUE);
+-        gr.drawLine(x1, y1, x2, y2);
+-    }
+-
+-    @Override
+-    public void actionPerformed(final ActionEvent e) {
+-        if (e.getSource() == timer) {
+-            repaint();
+-            for (Pacman pacman : pacmans) {
+-                if (!pacman.isFlipped()) {
+-                    pacman.setX(pacman.getX() + 1);
+-                } else {
+-                    pacman.setX(pacman.getX() - 1);
+-                }
+-            }
+-        }
+-    }
+-
+-}
+Index: src/Grass.java
+===================================================================
+diff --git a/src/Grass.java b/src/Grass.java
+deleted file mode 100644
+--- a/src/Grass.java	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ /dev/null	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
+@@ -1,53 +0,0 @@
+-import java.awt.*;
+-
+-public class Grass {
+-    private int x;
+-    private int y;
+-    private int width;
+-    private int height;
+-    private Color color;
+-
+-    public Grass(final int x, final int y, final int width, final int height, final Color color) {
+-        this.x = x;
+-        this.y = y;
+-        this.width = width;
+-        this.height = height;
+-        this.color = color;
+-    }
+-
+-    public Grass(final int x, final int y, final int width, final int height) {
+-        this.x = x;
+-        this.y = y;
+-        this.width = width;
+-        this.height = height;
+-        this.color = Color.GREEN;
+-    }
+-
+-    public void setX(int x) {
+-        this.x = x;
+-    }
+-
+-    public void setY(int y) {
+-        this.y = y;
+-    }
+-
+-    public void setWidth(int width) {
+-        this.width = width;
+-    }
+-
+-    public void setHeight(int height) {
+-        this.height = height;
+-    }
+-
+-    public void setColor(Color color) {
+-        this.color = color;
+-    }
+-
+-    void draw(final Graphics gr) {
+-        Graphics2D g = (Graphics2D) gr;
+-
+-        g.setColor(this.color);
+-        g.drawRect(x, y, width, height);
+-        g.fillRect(x, y, width, height);
+-    }
+-}
+Index: src/task1/DrawPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/task1/DrawPanel.java b/src/task1/DrawPanel.java
+new file mode 100644
+--- /dev/null	(date 1697824476095)
++++ b/src/task1/DrawPanel.java	(date 1697824476095)
+@@ -0,0 +1,87 @@
++package task1;
++
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.ArrayList;
++import java.util.List;
++
++public class DrawPanel extends JPanel implements ActionListener {
++
++    private int PANEL_WIDTH;
++    private int PANEL_HEIGHT;
++    private int TIMER_DELAY;
++    private Timer timer;
++    private List<Drawable> objects = new ArrayList<>();
++    
++    public DrawPanel(int width, int height, int timerDelay) {
++        this.PANEL_WIDTH = width;
++        this.PANEL_HEIGHT = height;
++        this.TIMER_DELAY = timerDelay;
++
++        this.objects.add(new Wall(0, height / 3, width / 3, height / 3, true));
++        this.objects.add(new Wall(width / 3, height / 3, width / 3, (height / 3) * 2, true));
++        this.objects.add(new Wall(width / 3 + 200, 0, width / 3 + 200, (height / 3) * 2, true));
++        this.objects.add(new Wall(width / 2, 5, (width / 5) * 4, 5, true));
++        this.objects.add(new Wall((width / 5) * 4, 5, (width / 5) * 4, (height / 3) * 2, true));
++        this.objects.add(new Wall((width / 3) * 2, height - 5, ((width / 10) * 17) / 2, height - 5, true));
++        this.objects.add(new Wall((width / 3) * 2, height - 5, (width / 3) * 2, height - 200, true));
++
++        this.objects.add(new Wall(-10, (height / 5) * 3 + 10, width / 5, width / 5, false));
++        this.objects.add(new Wall(-10, -10, width / 5, height / 5, false));
++        this.objects.add(new Wall(width / 3, height - 200, width / 5, height - 200, false));
++        this.objects.add(new Wall(width / 2, height / 4, width / 5, width / 5, false));
++        this.objects.add(new Wall((width / 10) * 9, height / 4, width / 5, (width / 3) * 2, false));
++
++        this.objects.add(new Cherry(width / 2 + 450, height / 2 - 100));
++        this.objects.add(new Cherry((width / 10) * 3, height / 5 - 100));
++        this.objects.add(new Cherry(width - 200, height / 5 - 100));
++        this.objects.add(new Cherry((width / 7) * 5, height - 200));
++        this.objects.add(new Cherry(width / 5 + 100, height - 200));
++
++        this.objects.add(new Pacman(0, height / 3 - 20, 200, 45, Color.GREEN, false));
++        this.objects.add(new Pacman(300, height - 300, 200, 45, Color.PINK, false));
++        this.objects.add(new Pacman(width - 200, 0, 200, 45, Color.CYAN, true));
++
++        timer = new Timer(timerDelay, this);
++        timer.start();
++    }
++
++    @Override
++    public void paint(final Graphics gr) {
++        Graphics2D g = (Graphics2D) gr;
++
++        gr.setColor(Color.BLACK);
++        gr.fillRect(0, 0, getWidth(), getHeight());
++
++        for (Drawable object : objects) {
++            if (object.getClass() == Pacman.class) {
++                Pacman pacman = (Pacman) object;
++                if (!pacman.isFlipped()) {
++                    pacman.setX(pacman.getX() + 1);
++                } else {
++                    pacman.setX(pacman.getX() - 1);
++                }
++            }
++            object.draw(g);
++        }
++
++        Font font = new Font("Georgia", Font.BOLD, 200);
++        gr.setColor(Color.ORANGE);
++        gr.setFont(font);
++        String message = "task1.Pacman";
++        FontMetrics metrics = gr.getFontMetrics(font);
++        int x = (getWidth() - metrics.stringWidth(message)) / 2;
++        int y = getHeight() / 2;
++        gr.drawString(message, x, y);
++    }
++
++    @Override
++    public void actionPerformed(final ActionEvent e) {
++        if (e.getSource() == timer) {
++            repaint();
++        }
++    }
++
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"702092e1-e4e4-4732-832e-a0c1961024d0\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.gitignore\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Cherry.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/DrawPanel.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Grass.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/MainWindow.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pacman.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/task1.iml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2VUakJ4mwpaXlPgAaKjVEVDcyD2\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"last_opened_file_path\": \"D:/IdeaProjects/task_7\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"task1\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"702092e1-e4e4-4732-832e-a0c1961024d0\" name=\"Changes\" comment=\"\" />\r\n      <created>1694893254172</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1694893254172</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ b/.idea/workspace.xml	(date 1697824681271)
+@@ -4,61 +4,263 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="702092e1-e4e4-4732-832e-a0c1961024d0" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Cherry.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/DrawPanel.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Grass.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/MainWindow.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pacman.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/task1.iml" afterDir="false" />
++    <list default="true" id="702092e1-e4e4-4732-832e-a0c1961024d0" name="Changes" comment="new commit">
++      <change afterPath="$PROJECT_DIR$/src/task1/DrawPanel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Cherry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/Cherry.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/DrawPanel.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Grass.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/MainWindow.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/Pacman.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/task1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/task1.iml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="CoverageDataManager">
++    <SUITE FILE_PATH="coverage/task1$Main.coverage" NAME="Main Coverage Results" MODIFIED="1696485507995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
++  </component>
++  <component name="CreatePatchCommitExecutor">
++    <option name="PATCH_PATH" value="" />
++  </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GradleLocalSettings">
++    <option name="externalProjectsViewState">
++      <projects_view />
++    </option>
++  </component>
++  <component name="IdeDocumentHistory">
++    <option name="CHANGED_PATHS">
++      <list>
++        <option value="$PROJECT_DIR$/src/Main.java" />
++        <option value="$PROJECT_DIR$/src/Pacman.java" />
++        <option value="$PROJECT_DIR$/src/Background.java" />
++        <option value="$PROJECT_DIR$/src/Drawable.java" />
++        <option value="$PROJECT_DIR$/src/Cherry.java" />
++        <option value="$PROJECT_DIR$/src/Walls.java" />
++        <option value="$PROJECT_DIR$/src/Wall.java" />
++        <option value="$PROJECT_DIR$/src/Word.java" />
++        <option value="$PROJECT_DIR$/src/DrawPanel.java" />
++        <option value="$PROJECT_DIR$/src/MainWindow.java" />
++      </list>
++    </option>
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
++  <component name="ProjectFrameBounds">
++    <option name="x" value="-8" />
++    <option name="y" value="-8" />
++    <option name="width" value="1696" />
++    <option name="height" value="1022" />
++  </component>
+   <component name="ProjectId" id="2VUakJ4mwpaXlPgAaKjVEVDcyD2" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectView">
++    <navigator currentView="ProjectPane" proportions="" version="1">
++      <flattenPackages />
++      <showMembers />
++      <showModules />
++      <showLibraryContents />
++      <hideEmptyPackages />
++      <abbreviatePackageNames />
++      <autoscrollToSource />
++      <autoscrollFromSource />
++      <sortByType />
++      <manualOrder />
++      <foldersAlwaysOnTop value="true" />
++    </navigator>
++    <panes>
++      <pane id="Scope" />
++      <pane id="Scratches" />
++      <pane id="PackagesPane" />
++      <pane id="ProjectPane">
++        <subPane>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="task1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="task1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="task1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="task1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="task1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="src" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++        </subPane>
++      </pane>
++    </panes>
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "last_opened_file_path": "D:/IdeaProjects/task_7"
++    "last_opened_file_path": "D:/IdeaProjects/task1"
+   }
+ }]]></component>
+   <component name="RunManager">
++    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
++      <module name="" />
++      <option name="DEPLOY" value="true" />
++      <option name="ARTIFACT_NAME" value="" />
++      <option name="PM_INSTALL_OPTIONS" value="" />
++      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
++      <option name="MODE" value="default_activity" />
++      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
++      <option name="PREFERRED_AVD" value="" />
++      <option name="CLEAR_LOGCAT" value="false" />
++      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
++      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
++      <option name="FORCE_STOP_RUNNING_APP" value="true" />
++      <option name="DEBUGGER_TYPE" value="Java" />
++      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
++      <option name="PREFERRED_AVD" value="" />
++      <Java />
++      <Profilers>
++        <option name="GAPID_DISABLE_PCS" value="false" />
++      </Profilers>
++      <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY_CLASS" value="" />
++      <method />
++    </configuration>
++    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
++      <module name="" />
++      <option name="TESTING_TYPE" value="0" />
++      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
++      <option name="METHOD_NAME" value="" />
++      <option name="CLASS_NAME" value="" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="EXTRA_OPTIONS" value="" />
++      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
++      <option name="PREFERRED_AVD" value="" />
++      <option name="CLEAR_LOGCAT" value="false" />
++      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
++      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
++      <option name="FORCE_STOP_RUNNING_APP" value="true" />
++      <option name="DEBUGGER_TYPE" value="Java" />
++      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
++      <option name="PREFERRED_AVD" value="" />
++      <Java />
++      <Profilers>
++        <option name="GAPID_DISABLE_PCS" value="false" />
++      </Profilers>
++      <method />
++    </configuration>
++    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
++      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
++      <module name="" />
++      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
++      <option name="ALTERNATIVE_JRE_PATH" />
++      <option name="PACKAGE_NAME" />
++      <option name="MAIN_CLASS_NAME" />
++      <option name="METHOD_NAME" />
++      <option name="TEST_OBJECT" value="class" />
++      <option name="VM_PARAMETERS" />
++      <option name="PARAMETERS" />
++      <option name="WORKING_DIRECTORY" />
++      <option name="ENV_VARIABLES" />
++      <option name="PASS_PARENT_ENVS" value="true" />
++      <option name="TEST_SEARCH_SCOPE">
++        <value defaultName="singleModule" />
++      </option>
++      <envs />
++      <patterns />
++      <method />
++    </configuration>
++    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
++      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
++      <module name="" />
++      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
++      <option name="ALTERNATIVE_JRE_PATH" />
++      <option name="SUITE_NAME" />
++      <option name="PACKAGE_NAME" />
++      <option name="MAIN_CLASS_NAME" />
++      <option name="METHOD_NAME" />
++      <option name="GROUP_NAME" />
++      <option name="TEST_OBJECT" value="CLASS" />
++      <option name="VM_PARAMETERS" />
++      <option name="PARAMETERS" />
++      <option name="WORKING_DIRECTORY" />
++      <option name="OUTPUT_DIRECTORY" />
++      <option name="ANNOTATION_TYPE" />
++      <option name="ENV_VARIABLES" />
++      <option name="PASS_PARENT_ENVS" value="true" />
++      <option name="TEST_SEARCH_SCOPE">
++        <value defaultName="singleModule" />
++      </option>
++      <option name="USE_DEFAULT_REPORTERS" value="false" />
++      <option name="PROPERTIES_FILE" />
++      <envs />
++      <properties />
++      <listeners />
++      <method />
++    </configuration>
+     <configuration name="Main" type="Application" factoryName="Application">
+-      <option name="MAIN_CLASS_NAME" value="Main" />
++      <option name="MAIN_CLASS_NAME" value="task1.Main" />
+       <module name="task1" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration default="true" type="JUnit" factoryName="JUnit">
++      <option name="TEST_OBJECT" value="class" />
++      <option name="VM_PARAMETERS" />
++      <option name="WORKING_DIRECTORY" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
++      <option name="filePath" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="TestNG">
++      <option name="TEST_OBJECT" value="CLASS" />
++      <option name="VM_PARAMETERS" />
++      <option name="WORKING_DIRECTORY" />
++      <properties />
++      <listeners />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -69,8 +271,61 @@
+       <option name="presentableId" value="Default" />
+       <updated>1694893254172</updated>
+     </task>
++    <task id="LOCAL-00001" summary="new commit">
++      <created>1695022145971</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1695022145971</updated>
++    </task>
++    <task id="LOCAL-00002" summary="created an interface">
++      <created>1697824534187</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1697824534187</updated>
++    </task>
++    <task id="LOCAL-00003" summary="new commit">
++      <created>1697824676753</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1697824676753</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
++  <component name="ToolWindowManager">
++    <frame x="-8" y="-8" width="1696" height="1022" extended-state="6" />
++    <editor active="true" />
++    <layout>
++      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
++      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22343922" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
++      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37349397" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
++      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
++      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
++      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
++      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
++      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
++      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
++      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
++      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
++      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
++      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
++      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
++      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
++      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
++    </layout>
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+       <map>
+@@ -82,4 +337,232 @@
+       </map>
+     </option>
+   </component>
++  <component name="Vcs.Log.UiProperties">
++    <option name="RECENTLY_FILTERED_USER_GROUPS">
++      <collection />
++    </option>
++    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
++      <collection />
++    </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="created an interface" />
++    <MESSAGE value="new commit" />
++    <option name="LAST_COMMIT_MESSAGE" value="new commit" />
++  </component>
++  <component name="antWorkspaceConfiguration">
++    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
++    <option name="FILTER_TARGETS" value="false" />
++  </component>
++  <component name="editorHistoryManager">
++    <entry file="file://$PROJECT_DIR$/src/Grass.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="34">
++          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://X:/Java/JDK1.5.0_04/src.zip!/java/awt/event/ActionListener.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="476">
++          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Background.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="85">
++          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://X:/Java/jdk1.8.0_181/src.zip!/java/util/List.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="-2536">
++          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://X:/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="269">
++          <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://X:/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="246">
++          <caret line="1785" column="0" selection-start-line="1785" selection-start-column="0" selection-end-line="1785" selection-end-column="0" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Word.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="391">
++          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Wall.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="136">
++          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://X:/Java/jdk1.8.0_181/src.zip!/java/util/AbstractList.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="116">
++          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Pacman.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="255">
++          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Cherry.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="289">
++          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/DrawPanel.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="399">
++          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Drawable.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="85">
++          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/Main.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="119">
++          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/MainWindow.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="153">
++          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++  </component>
++  <component name="masterDetails">
++    <states>
++      <state key="ArtifactsStructureConfigurable.UI">
++        <settings>
++          <artifact-editor />
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="FacetStructureConfigurable.UI">
++        <settings>
++          <last-edited>No facets are configured</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="GlobalLibrariesConfigurable.UI">
++        <settings>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="JdkListConfigurable.UI">
++        <settings>
++          <last-edited>1.5</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ModuleStructureConfigurable.UI">
++        <settings>
++          <last-edited>task1</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++                <option value="0.6" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ProjectJDKs.UI">
++        <settings>
++          <last-edited>1.5</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ProjectLibrariesConfigurable.UI">
++        <settings>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++    </states>
++  </component>
+ </project>
+\ No newline at end of file
+Index: task1.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/task1.iml b/task1.iml
+--- a/task1.iml	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ b/task1.iml	(date 1696484146000)
+@@ -1,11 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
+-  <component name="NewModuleRootManager" inherit-compiler-output="true">
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 31b563937646d20de4c8b4d4d176c583bb953b2b)
++++ b/.idea/misc.xml	(date 1697824292718)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
