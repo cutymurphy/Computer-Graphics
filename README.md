@@ -1,6 +1,6 @@
 # Computer Graphics tasks
 
-|<a href="https://github.com/cutymurphy/Computer-Graphics/tree/master/src/task1">Task 1</a>
+|<font color="green"><a href="https://github.com/cutymurphy/Computer-Graphics/tree/master/src/task1">Task 1</a></font>
 |------------------------------------------------------------------------------------------
-|<a href="https://github.com/cutymurphy/Computer-Graphics/tree/master/src/task2">Task 2</a>
+|<font color="green"><a href="https://github.com/cutymurphy/Computer-Graphics/tree/master/src/task2">Task 2</a></font>
 
