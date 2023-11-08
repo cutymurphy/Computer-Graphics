@@ -12,6 +12,7 @@ public class DrawPanel extends JPanel implements ActionListener {
     private final Timer timer;
 
     private final ColorInterpolatedSector interpolatedSector;
+    private final BresenhamCircleSectorFill bresenhamCircleSectorFill;
 
     public DrawPanel(final int width, final int height, final int timerDelay) {
         this.PANEL_WIDTH = width;
@@ -24,11 +25,12 @@ public class DrawPanel extends JPanel implements ActionListener {
         int centerY = 450;
         int radius = 300;
         double startAngle = 0;
-        double extentAngle = 180;
-        Color centerColor = Color.BLACK;
-        Color edgeColor  = Color.GREEN;
+        double endAngle = 360;
+        Color startColor = Color.WHITE;
+        Color endColor  = Color.MAGENTA;
 
-        interpolatedSector = new ColorInterpolatedSector(centerX, centerY, radius, startAngle, extentAngle, centerColor, edgeColor);
+        bresenhamCircleSectorFill = new BresenhamCircleSectorFill(centerX, centerY, radius, startAngle, endAngle, startColor, endColor);
+        interpolatedSector = new ColorInterpolatedSector(centerX, centerY, radius, startAngle, endAngle, startColor, endColor);
     }
 
     @Override
@@ -38,7 +40,8 @@ public class DrawPanel extends JPanel implements ActionListener {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 
-        interpolatedSector.draw(g);
+        bresenhamCircleSectorFill.draw(g);
+        //interpolatedSector.draw(g);
     }
 
     @Override

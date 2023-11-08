@@ -67,6 +67,7 @@ public class DrawPanel extends JPanel implements ActionListener {
             object.draw(g);
         }
 
+        //по-хорошему тоже надо реализовать как реализующего Drawable
         Font font = new Font("Georgia", Font.BOLD, 200);
         gr.setColor(Color.ORANGE);
         gr.setFont(font);
