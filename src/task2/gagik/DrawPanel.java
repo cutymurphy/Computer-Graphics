@@ -32,7 +32,7 @@ public class DrawPanel extends JPanel implements ActionListener {
         g.setColor(Color.BLACK);
         g.setFont(new Font(null, Font.PLAIN, 29));
         g.drawString("Дуга окружности с интерполяцией цвета", 8, 50);
-
+        g.setColor(Color.BLACK);
         circleArc.draw(g);
     }
 
