@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="702092e1-e4e4-4732-832e-a0c1961024d0" name="Changes" comment="task 2 prototype (it works)">
-      <change afterPath="$PROJECT_DIR$/src/task2/gagik/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2023_21_15_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2023_21_15__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task1/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task1/Word.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/mine/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/mine/DrawPanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="702092e1-e4e4-4732-832e-a0c1961024d0" name="Changes" comment="task 2 prototype (it works)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
