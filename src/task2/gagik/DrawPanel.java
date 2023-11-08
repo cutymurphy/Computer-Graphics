@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class DrawPanel extends JPanel implements ActionListener {
 
     private final int PANEL_WIDTH;
+
     private final int PANEL_HEIGHT;
     private final Timer timer;
 
@@ -32,7 +33,7 @@ public class DrawPanel extends JPanel implements ActionListener {
         g.setColor(Color.BLACK);
         g.setFont(new Font(null, Font.PLAIN, 29));
         g.drawString("Дуга окружности с интерполяцией цвета", 8, 50);
-        g.setColor(Color.BLACK);
+
         circleArc.draw(g);
     }
 

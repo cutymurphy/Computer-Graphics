@@ -37,7 +37,7 @@ public class Pacman implements Drawable {
         Graphics2D g2d = g;
 
         int eyeX; int eyeY;
-        g.setColor(Color.BLACK);
+
         g2d.setColor(bodyColor);
         if (flipped) {
             g2d.fillArc(x, y, diameter, diameter, -mouthAngle - 90, 360 - (2 * mouthAngle));
