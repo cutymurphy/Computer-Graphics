@@ -16,7 +16,7 @@ public class Cherry implements Drawable {
         g.setColor(Color.RED);
         g.fillOval(x, y, 70, 70);
 
-        g.setColor(Color.GREEN);
+        g.setColor(new Color(12, 125, 13));
         g.fillArc(x + 5, y - 10, 60, 60, 0, 180);
     }
 }
