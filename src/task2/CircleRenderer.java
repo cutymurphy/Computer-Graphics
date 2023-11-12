@@ -1,23 +1,34 @@
-package task2.mine;
+package task2;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Bresenham implements AlgorithmArc {
+public class CircleRenderer implements SectorAlgorithm {
     private final int centerX, centerY, radius;
-
     private final List<Point> points = new LinkedList<>();
-    
-    public Bresenham(int radius, int centerX, int centerY) {
+    private final SectorRenderer sectorRenderer;
+    private final Color boardColor;
+
+    public CircleRenderer(int radius, int centerX, int centerY,
+                          int sectorStartX, int sectorStartY, int sectorEndX, int sectorEndY,
+                          Color colorCenter, Color colorEdge, Color boardColor) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.radius = radius;
+        this.boardColor = boardColor;
+        this.sectorRenderer = new SectorRenderer(centerX, centerY, radius, sectorStartX, sectorStartY, sectorEndX, sectorEndY, colorCenter, colorEdge);
     }
 
     @Override
     public List<Point> getPoints() {
         processBresenham();
         return points;
+    }
+
+    @Override
+    public List<Point> getSectorPoints() {
+        return sectorRenderer.renderSector();
     }
 
     // Алгоритм Брезенхема для рисования окружности
@@ -39,27 +50,13 @@ public class Bresenham implements AlgorithmArc {
         } while (x < 0);
     }
 
-    // Метод для проверки и рисования пикселя на основе угла
+
     private void drawPixel(int x, int y) {
         putPixel(x, y);
     }
 
-    @Override
-    public int getCenterX() {
-        return centerX;
-    }
-
-    @Override
-    public int getCenterY() {
-        return centerY;
-    }
-
-    @Override
-    public int getRadius() {
-        return radius;
-    }
-
     private void putPixel(int x, int y) {
-        this.points.add(new Point(x, y));
+        this.points.add(new Point(x, y, 0, boardColor));
     }
+
 }
