@@ -1,4 +1,4 @@
-package task2.dasha;
+package task2;
 
 import javax.swing.*;
 import java.awt.*;
