@@ -1,9 +1,10 @@
-package task2;
+package task2.dasha;
 
 import java.awt.*;
 
 public class Interpolation {
-    private final int centerX, centerY, radius;
+    private final int centerX, centerY;
+    private final int radius;
     private final Color colorCenter, colorEdge;
 
     public Interpolation(int centerX, int centerY, int radius, Color colorCenter, Color colorEdge) {

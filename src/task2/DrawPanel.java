@@ -1,10 +1,9 @@
-package task2;
+package task2.dasha;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel{
-
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
     private final Drawable[] drawables;
@@ -12,7 +11,6 @@ public class DrawPanel extends JPanel{
     public DrawPanel(final int width, final int height, Drawable... drawables) {
         this.PANEL_WIDTH = width;
         this.PANEL_HEIGHT = height;
-
         this.drawables = drawables;
     }
 

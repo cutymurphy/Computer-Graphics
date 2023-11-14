@@ -5,39 +5,37 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SectorRenderer {
-    private final int centerX, centerY, radius;
-    private final int sectorStartX, sectorStartY, sectorEndX, sectorEndY;
+    private final int centerX, centerY;
+    private final int radius;
+    private final double startAngle, endAngle;
     private final Color colorCenter, colorEdge;
     private final List<Point> points = new LinkedList<>();
 
     public SectorRenderer(int centerX, int centerY, int radius,
-                          int sectorStartX, int sectorStartY, int sectorEndX, int sectorEndY,
+                          double startAngle, double endAngle,
                           Color colorCenter, Color colorEdge) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.radius = radius;
-        this.sectorStartX = sectorStartX;
-        this.sectorStartY = sectorStartY;
-        this.sectorEndX = sectorEndX;
-        this.sectorEndY = sectorEndY;
+        this.startAngle = startAngle;
+        this.endAngle = endAngle;
         this.colorCenter = colorCenter;
         this.colorEdge = colorEdge;
     }
 
     public List<Point> renderSector() {
-        int[] borders = new int[4];
-        int[] newBorders = setBorderValue(borders);
-        int borderX_1 = newBorders[0], borderX_2 = newBorders[1], borderY_1 = newBorders[2], borderY_2 = newBorders[3];
+        for (int x = centerX - radius; x <= centerX + radius; x++) {
+            for (int y = centerY - radius; y <= centerY + radius; y++) {
+                if (isInsideCircle(x, y)) {
 
-        for (int x = borderX_1; x <= borderX_2; x++) {
-            for (int y = borderY_1; y <= borderY_2; y++) {
+                    double angle = normalizeAngle(Math.toDegrees(Math.atan2(centerY - y, x - centerX)));
 
-                int checkResult1 = findVertical(sectorStartX - centerX, sectorStartY - centerY, x - centerX, y - centerY);
-                int checkResult2 = findVertical(x - centerX, y - centerY, sectorEndX - centerX, sectorEndY - centerY);
+                    if (isAngleInRange(angle)) {
+                        Interpolation i = new Interpolation(centerX, centerY, radius, colorCenter, colorEdge);
+                        Color color = i.getColor(x, y);
 
-                if ((checkResult1 >= 0 && checkResult2 >= 0 || checkResult1 <= 0 && checkResult2 <= 0)
-                        && isPointInsideCircle(x, y, centerX, centerY, radius)) {
-                    drawPixel(x, y);
+                        putPixel(x, y, color);
+                    }
                 }
             }
         }
@@ -45,41 +43,29 @@ public class SectorRenderer {
         return points;
     }
 
-    private int findVertical(int v1, int v2, int w1, int w2) {
-        return v1 * w2 - v2 * w1;
+    private boolean isInsideCircle(int x, int y) {
+        return Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2) <= Math.pow(radius, 2);
     }
 
-    private boolean isPointInsideCircle(int pointX, int pointY, int centerX, int centerY, int radius) {
-        return (Math.pow(pointX - centerX, 2) + Math.pow(pointY - centerY, 2)) <= Math.pow(radius, 2);
-    }
-
-    private void drawPixel(int x, int y) {
-        Interpolation i = new Interpolation(centerX, centerY, radius, colorCenter, colorEdge);
-        Color color = i.getColor(x, y);
-        putPixel(x, y, 0, color);
-    }
-
-    private void putPixel(int x, int y, int z, Color color) {
-        this.points.add(new Point(x, y, z, color));
-    }
-
-    private int[] setBorderValue(int[] borders) {
-        borders[0] = centerX - radius;
-        borders[1] = centerX + radius;
-        borders[2] = centerY - radius;
-        borders[3] = centerY + radius;
-
-        if (sectorStartX >= radius && sectorEndX >= radius && sectorStartY >= radius && sectorEndY <= radius) { //1
-            borders[0] = centerX;
-            borders[1] = centerX + radius;
-        } else if (sectorStartX <= radius && sectorEndX >= radius && sectorStartY >= radius && sectorEndY >= radius) { //2
-            borders[2] = centerY;
-            borders[3] = centerY + radius;
-        } else if (sectorStartX >= radius && sectorEndX <= radius && sectorStartY <= radius && sectorEndY >= radius) {
-            borders[2] = centerY - radius;
-            borders[3] = centerY;
+    private boolean isAngleInRange(double angle) {
+        if (startAngle <= endAngle && startAngle >= 0 && endAngle >= 0) { //определяет направление движения по часовой стрелке
+            return (angle >= startAngle && angle <= endAngle);
+        } /*else if (startAngle <= endAngle && startAngle <= 0 && endAngle <= 0) {
+            return (angle >= normalizeAngle(startAngle) && angle <= normalizeAngle(endAngle));
+        } else if (startAngle <= endAngle && startAngle <= 0 && endAngle >= 0) {
+            return (angle >= normalizeAngle(startAngle) && angle >= endAngle ||
+                    angle <= normalizeAngle(startAngle) && angle <= endAngle ||
+                    angle >= normalizeAngle(startAngle) && angle <= endAngle);
+        }*/ else {
+            return angle >= startAngle || angle <= endAngle;
         }
+    }
 
-        return borders;
+    private double normalizeAngle(double angle) {
+        return angle < 0? 360 + angle : angle;
+    }
+
+    private void putPixel(int x, int y, Color color) {
+        this.points.add(new Point(x, y, color));
     }
 }
