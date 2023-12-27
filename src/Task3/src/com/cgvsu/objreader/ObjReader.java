@@ -1,9 +1,9 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.objreader;
+package Task3.src.com.cgvsu.objreader;
 
-import Task3.ObjReaderInitial.src.com.cgvsu.math.Vector2f;
-import Task3.ObjReaderInitial.src.com.cgvsu.math.Vector3f;
-import Task3.ObjReaderInitial.src.com.cgvsu.model.Model;
-import Task3.ObjReaderInitial.src.com.cgvsu.model.Polygon;
+import Task3.src.com.cgvsu.math.Vector2f;
+import Task3.src.com.cgvsu.math.Vector3f;
+import Task3.src.com.cgvsu.model.Model;
+import Task3.src.com.cgvsu.model.Polygon;
 
 import java.util.ArrayList;
 import java.util.Arrays;

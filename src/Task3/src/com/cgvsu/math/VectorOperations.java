@@ -1,4 +1,4 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.math;
+package Task3.src.com.cgvsu.math;
 
 import static java.lang.Math.sqrt;
 

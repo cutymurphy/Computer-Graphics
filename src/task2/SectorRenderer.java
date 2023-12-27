@@ -26,8 +26,8 @@ public class SectorRenderer {
     public List<Point> renderSector() {
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int y = centerY - radius; y <= centerY + radius; y++) {
-                if (isInsideCircle(x, y)) {
 
+                if (isInsideCircle(x, y)) {
                     double angle = normalizeAngle(Math.toDegrees(Math.atan2(centerY - y, x - centerX)));
 
                     if (isAngleInRange(angle)) {
@@ -48,7 +48,7 @@ public class SectorRenderer {
     }
 
     private boolean isAngleInRange(double angle) {
-        if (startAngle <= endAngle && startAngle >= 0 && endAngle >= 0) { //определяет направление движения по часовой стрелке
+        if (startAngle <= endAngle) { //определяет направление движения по часовой стрелке
             return (angle >= startAngle && angle <= endAngle);
         } /*else if (startAngle <= endAngle && startAngle <= 0 && endAngle <= 0) {
             return (angle >= normalizeAngle(startAngle) && angle <= normalizeAngle(endAngle));

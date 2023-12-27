@@ -1,11 +1,10 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.model;
+package Task3.src.com.cgvsu.model;
 
-import Task3.ObjReaderInitial.src.com.cgvsu.math.Vector2f;
-import Task3.ObjReaderInitial.src.com.cgvsu.math.Vector3f;
+import Task3.src.com.cgvsu.math.Vector2f;
+import Task3.src.com.cgvsu.math.Vector3f;
+import Task3.src.com.cgvsu.math.VectorOperations;
 
 import java.util.ArrayList;
-
-import static Task3.ObjReaderInitial.src.com.cgvsu.math.VectorOperations.*;
 
 public class Model {
 
@@ -28,12 +27,12 @@ public class Model {
 
                 if (vertexIndexes.contains(i)) {
 
-                    sumOfVectors = calculateSumOfVectors(sumOfVectors, normalsForPolygons.get(j));
+                    sumOfVectors = VectorOperations.calculateSumOfVectors(sumOfVectors, normalsForPolygons.get(j));
                     num += 1;
                 }
             }
-            Vector3f normalForVertex = divideVectorByNumber(sumOfVectors, num);
-            Vector3f normalizeVector = normalizeVector(normalForVertex);
+            Vector3f normalForVertex = VectorOperations.divideVectorByNumber(sumOfVectors, num);
+            Vector3f normalizeVector = VectorOperations.normalizeVector(normalForVertex);
 
             normals.add(i, normalizeVector);
         }
@@ -51,14 +50,14 @@ public class Model {
             Vector3f vertex_3 = vertices.get(vertexes.get(2));
 
             //вычисляем 2 вектора
-            Vector3f vector_1 = calculateVector(vertex_2, vertex_1);
-            Vector3f vector_2 = calculateVector(vertex_2, vertex_3);
+            Vector3f vector_1 = VectorOperations.calculateVector(vertex_2, vertex_1);
+            Vector3f vector_2 = VectorOperations.calculateVector(vertex_2, vertex_3);
 
             //вычисляем векторное произведение двух векторов
-            Vector3f crossVector = calculateCrossVector(vector_2, vector_1);
+            Vector3f crossVector = VectorOperations.calculateCrossVector(vector_2, vector_1);
 
             //добавляем в список нормализованный вектор к полигону
-            normalsForPolygons.add(i, normalizeVector(crossVector));
+            normalsForPolygons.add(i, VectorOperations.normalizeVector(crossVector));
         }
     }
 

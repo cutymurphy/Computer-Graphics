@@ -1,4 +1,4 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.objreader;
+package Task3.src.com.cgvsu.objreader;
 
 public class ObjReaderException extends RuntimeException {
     public ObjReaderException(String errorMessage, int lineInd) {

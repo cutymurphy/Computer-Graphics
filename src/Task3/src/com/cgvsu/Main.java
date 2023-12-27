@@ -1,8 +1,8 @@
-package Task3.ObjReaderInitial.src.com.cgvsu;
+package Task3.src.com.cgvsu;
 
-import Task3.ObjReaderInitial.src.com.cgvsu.math.Vector3f;
-import Task3.ObjReaderInitial.src.com.cgvsu.model.Model;
-import Task3.ObjReaderInitial.src.com.cgvsu.objreader.ObjReader;
+import Task3.src.com.cgvsu.math.Vector3f;
+import Task3.src.com.cgvsu.model.Model;
+import Task3.src.com.cgvsu.objreader.ObjReader;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Path fileName = Path.of("src/Task3/ObjReaderInitial/obj_files/square.obj");
+        Path fileName = Path.of("src/Task3/obj_files/square.obj");
         String fileContent = Files.readString(fileName);
 
         System.out.println("Loading model ...");

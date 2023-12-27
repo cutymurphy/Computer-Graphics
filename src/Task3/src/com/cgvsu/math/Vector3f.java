@@ -1,4 +1,4 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.math;
+package Task3.src.com.cgvsu.math;
 
 // Это заготовка для собственной библиотеки для работы с линейной алгеброй
 public class Vector3f {
@@ -19,8 +19,6 @@ public class Vector3f {
     public void setZ(float z) {
         this.z = z;
     }
-
-
 
     public boolean equals(Vector3f other) {
         // todo: желательно, чтобы это была глобальная константа

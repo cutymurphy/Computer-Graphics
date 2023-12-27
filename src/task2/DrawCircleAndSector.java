@@ -3,10 +3,10 @@ package task2;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
-public class DrawCircle implements Drawable {
+public class DrawCircleAndSector implements Drawable {
     private final CircleAlgorithm algorithm;
 
-    public DrawCircle(CircleAlgorithm algorithm) {
+    public DrawCircleAndSector(CircleAlgorithm algorithm) {
         this.algorithm = algorithm;
     }
 
@@ -24,9 +24,9 @@ public class DrawCircle implements Drawable {
         }
     }
 
-    void putPixel(Graphics2D g, double x, double y, Color color) {
+    void putPixel(Graphics2D g, int x, int y, Color color) {
         g.setColor(color);
-        g.fillRect((int) x, (int) y, 1, 1);
+        g.fillRect(x, y, 1, 1);
     }
 }
 

@@ -1,4 +1,4 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.math;
+package Task3.src.com.cgvsu.math;
 
 // Это заготовка для собственной библиотеки для работы с линейной алгеброй
 public class Vector2f {

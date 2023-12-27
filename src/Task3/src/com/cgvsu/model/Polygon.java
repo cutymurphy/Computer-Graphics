@@ -1,4 +1,4 @@
-package Task3.ObjReaderInitial.src.com.cgvsu.model;
+package Task3.src.com.cgvsu.model;
 
 import java.util.ArrayList;
 

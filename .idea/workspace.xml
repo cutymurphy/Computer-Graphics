@@ -5,15 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="702092e1-e4e4-4732-832e-a0c1961024d0" name="Changes" comment="task 2 prototype (it works)">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/bio_singa_javafx.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/bio_singa_javafx1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/CircleAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/CircleAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/CircleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/CircleRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/DrawCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/DrawCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/Drawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/Drawable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/Interpolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/Interpolation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/computer-graphics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/computer-graphics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/ObjReaderInitial.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/obj_files/square.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/obj_files/square.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/obj_files/triangle.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/obj_files/triangle.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/math/Vector2f.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/math/Vector2f.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/math/Vector3f.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/math/Vector3f.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/math/VectorOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/math/VectorOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/model/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/model/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/objreader/ObjReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/objreader/ObjReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/src/com/cgvsu/objreader/ObjReaderException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task3/src/com/cgvsu/objreader/ObjReaderException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/tests/Task3/ObjReaderInitial/src/com/cgvsu/model/ModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task3/ObjReaderInitial/tests/com/cgvsu/objreader/ObjReaderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/task1/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task1/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/task2/DrawCircleAndSector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/DrawCircleAndSector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/task2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/task2/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2/SectorAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/SectorAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/task2/SectorRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/task2/SectorRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +42,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,6 +55,10 @@
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://C:/Program Files/Java/jdk-18.0.2.1/lib/src.zip!/java.base/java/nio/file/Files.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://C:/Program Files/Java/jdk-18.0.2.1/lib/src.zip!/java.base/sun/nio/fs/WindowsException.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -133,8 +151,13 @@
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/IdeaProjects/computer-graphics/src/task2/gagik&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/IdeaProjects/CGVSU-main&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
@@ -147,8 +170,14 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\IdeaProjects\computer-graphics\src\task2" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Task3.ObjReaderInitial.src.com.cgvsu.model" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Main-2">
+  <component name="RunManager" selected="Application.Main-3">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -259,6 +288,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main-3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Task3.src.com.cgvsu.Main" />
+      <module name="computer-graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="task2.gagik.Main" />
       <module name="computer-graphics" />
@@ -285,18 +321,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BresenhamTest.testGetPoints" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="computer-graphics" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="task2.gagik.*" />
+          <option name="PATTERN" value="Task3.ObjReaderInitial.src.com.cgvsu.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="task2.gagik" />
-      <option name="MAIN_CLASS_NAME" value="task2.gagik.BresenhamTest" />
-      <option name="METHOD_NAME" value="testGetPoints" />
+      <option name="PACKAGE_NAME" value="Task3.ObjReaderInitial.src.com.cgvsu.model" />
+      <option name="MAIN_CLASS_NAME" value="Task3.ObjReaderInitial.src.com.cgvsu.model.ModelTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelTest.calculateNormalsForVertexes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="computer-graphics" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Task3.ObjReaderInitial.src.com.cgvsu.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Task3.ObjReaderInitial.src.com.cgvsu.model" />
+      <option name="MAIN_CLASS_NAME" value="Task3.ObjReaderInitial.src.com.cgvsu.model.ModelTest" />
+      <option name="METHOD_NAME" value="calculateNormalsForVertexes" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjReaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="computer-graphics" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cgvsu.objreader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cgvsu.objreader" />
+      <option name="MAIN_CLASS_NAME" value="com.cgvsu.objreader.ObjReaderTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
@@ -330,15 +400,20 @@
     <list>
       <item itemvalue="Application.Main-1" />
       <item itemvalue="Application.Main-2" />
+      <item itemvalue="Application.Main-3" />
       <item itemvalue="Application.task2.Main" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.BresenhamTest.testGetPoints" />
+      <item itemvalue="JUnit.ModelTest" />
+      <item itemvalue="JUnit.ModelTest.calculateNormalsForVertexes" />
+      <item itemvalue="JUnit.ObjReaderTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ObjReaderTest" />
+        <item itemvalue="JUnit.ModelTest" />
+        <item itemvalue="JUnit.ModelTest.calculateNormalsForVertexes" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.task2.Main" />
-        <item itemvalue="JUnit.BresenhamTest.testGetPoints" />
       </list>
     </recent_temporary>
   </component>

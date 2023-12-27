@@ -71,7 +71,7 @@ public class DrawPanel extends JPanel implements ActionListener {
         Font font = new Font("Georgia", Font.BOLD, 200);
         gr.setColor(Color.MAGENTA);
         gr.setFont(font);
-        String message = "task1.Pacman";
+        String message = "Pacman";
         FontMetrics metrics = gr.getFontMetrics(font);
         int x = (getWidth() - metrics.stringWidth(message)) / 2;
         int y = getHeight() / 2;
